@@ -1,10 +1,8 @@
 export const dynamic = 'force-dynamic';
 export const runtime = 'edge'; // Optional: use 'nodejs' if not using edge functions
 
-const REAL_SITE = process.env.NEXT_PUBLIC_DOMAIN; // <-- change this
-
 async function getHTML() {
-  const res = await fetch(REAL_SITE, {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_DOMAIN}`, {
     headers: {
       'User-Agent': 'Mozilla/5.0',
     },
@@ -17,7 +15,7 @@ async function getHTML() {
 
 function fixRelativeUrls(html: string) {
   // Replace relative href/src with absolute ones
-  return html.replace(/(href|src|action)="\/(.*?)"/g, `$1="${REAL_SITE}/$2"`);
+  return html.replace(/(href|src|action)="\/(.*?)"/g, `$1="${process.env.NEXT_PUBLIC_DOMAIN}/$2"`);
 }
 
 export default async function Page() {
