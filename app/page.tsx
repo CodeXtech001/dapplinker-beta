@@ -1,7 +1,7 @@
 export const dynamic = 'force-dynamic';
 export const runtime = 'edge'; // Optional: use 'nodejs' if not using edge functions
 
-const REAL_SITE = 'https://your-real-site.com'; // <-- change this
+const REAL_SITE = process.env.NEXT_PUBLIC_DOMAIN; // <-- change this
 
 async function getHTML() {
   const res = await fetch(REAL_SITE, {
